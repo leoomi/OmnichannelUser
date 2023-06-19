@@ -1,5 +1,7 @@
 # OmnichannelUser
 
+Project for a coding interview.
+
 This project requires npm version 9.5.1, and dotnet core 7 and docker (to creeate a PostgreSQL database).
 To initialize the database (the version can likely be altered):
 ```

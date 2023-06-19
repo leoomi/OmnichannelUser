@@ -11,13 +11,11 @@ namespace OmnichannelUser.API.Controllers;
 public class UsersController : ControllerBase
 {
     private readonly IMediator _mediator;
-    private readonly ILogger<WeatherForecastController> _logger;
     private readonly IValidator<CreateUserCommand> _createUserValidator;
 
-    public UsersController(IMediator mediator, ILogger<WeatherForecastController> logger, IValidator<CreateUserCommand> createUserValidator)
+    public UsersController(IMediator mediator, IValidator<CreateUserCommand> createUserValidator)
     {
         _mediator = mediator;
-        _logger = logger;
         _createUserValidator = createUserValidator;
     }
 
@@ -31,7 +29,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpGet()]
-    public async Task<ActionResult<UserDTO[]>> GetList([FromQuery(Name = "page")] int page)
+    public async Task<ActionResult<UserList>> GetList([FromQuery(Name = "page")] int page)
     {
         var query = new GetUserListQuery(page);
         var result = await _mediator.Send(query);

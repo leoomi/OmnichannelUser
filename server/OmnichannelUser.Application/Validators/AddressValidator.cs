@@ -19,7 +19,8 @@ public class AddressValidator : AbstractValidator<AddressDTO>
         RuleFor(a => a.City)
             .NotEmpty().WithMessage("Este campo é obrigatório.");
         RuleFor(a => a.State)
-            .NotEmpty().WithMessage("Este campo é obrigatório.");
+            .NotEmpty().WithMessage("Este campo é obrigatório.")
+            .Equal("AM").WithMessage("O endereço precisa ser do Amazonas.");
         RuleFor(a => a)
             .MustAsync(async (a, cancellation) =>
             {

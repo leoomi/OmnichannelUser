@@ -10,12 +10,9 @@ namespace OmnichannelUser.API.Controllers;
 public class AddressController : ControllerBase
 {
     private readonly IMediator _mediator;
-    private readonly ILogger<WeatherForecastController> _logger;
-
-    public AddressController(IMediator mediator, ILogger<WeatherForecastController> logger)
+    public AddressController(IMediator mediator)
     {
         _mediator = mediator;
-        _logger = logger;
     }
 
     [HttpGet(Name = "GetAddressByZipCode")]

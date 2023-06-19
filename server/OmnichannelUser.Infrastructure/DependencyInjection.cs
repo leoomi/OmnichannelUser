@@ -9,7 +9,7 @@ namespace OmnichannelUser.Infrastructure;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services, string connString) 
+    public static IServiceCollection AddInfrastructure(this IServiceCollection services) 
     {
         services.AddScoped<IZipCodeFinder, ZipCodeFinder>();
         services.AddScoped<IUserRepository, UserRepository>();

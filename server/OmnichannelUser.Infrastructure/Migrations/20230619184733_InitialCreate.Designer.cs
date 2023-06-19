@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace OmnichannelUser.Infrastructure.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20230618210214_InitialCreate")]
+    [Migration("20230619184733_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -55,7 +55,7 @@ namespace OmnichannelUser.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Address");
+                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("OmnichannelUser.Domain.UserAggregate.User", b =>

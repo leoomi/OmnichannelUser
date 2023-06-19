@@ -1,4 +1,5 @@
 using OmnichannelUser.Domain.UserAggregate;
+using Microsoft.EntityFrameworkCore;
 
 namespace OmnichannelUser.Infrastructure.Repositories;
 
@@ -13,7 +14,10 @@ public class UserRepository : IUserRepository
 
     public User? Get(int id)
     {
-        return _context.Users.FirstOrDefault(u => u.Id == id);
+        var user = _context.Users
+            .Include(u => u.Address)
+            .FirstOrDefault(u => u.Id == id);
+        return user;
     }
 
     public User Create(User user)
@@ -37,9 +41,15 @@ public class UserRepository : IUserRepository
             .ToArray();
     }
 
+    public int GetUserCount()
+    {
+        return _context.Users.Count();
+    }
+
     public User? Update(User user)
     {
         var entry = _context.Users
+            .Include(u => u.Address)
             .SingleOrDefault(u => u.Id == user.Id);
         
         if (entry == null)
@@ -48,6 +58,11 @@ public class UserRepository : IUserRepository
         }
 
         _context.Entry(entry).CurrentValues.SetValues(user);
+
+        var addressEntry = _context.Addresses
+            .SingleOrDefault(a => a.Id == user.Address!.Id);
+        _context.Entry(addressEntry!).CurrentValues.SetValues(user.Address!);
+
         _context.SaveChanges();
         return entry;
     }

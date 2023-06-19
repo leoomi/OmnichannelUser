@@ -52,7 +52,7 @@ namespace OmnichannelUser.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Address");
+                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("OmnichannelUser.Domain.UserAggregate.User", b =>

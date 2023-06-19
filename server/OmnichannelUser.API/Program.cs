@@ -1,7 +1,4 @@
-using FluentValidation;
-using Microsoft.AspNetCore.Mvc;
 using OmnichannelUser.Application;
-using OmnichannelUser.Application.Commands;
 using OmnichannelUser.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services
     .AddApplication()
-    .AddInfrastructure(builder.Configuration.GetConnectionString("DefaultConnection"));
+    .AddInfrastructure();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -24,6 +21,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("cors");
 
 app.UseHttpsRedirection();
 

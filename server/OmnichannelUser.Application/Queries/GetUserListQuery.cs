@@ -3,7 +3,7 @@ using OmnichannelUser.Application.Models;
 
 namespace OmnichannelUser.Application.Commands;
 
-public class GetUserListQuery: IRequest<List<UserDTO>>
+public class GetUserListQuery: IRequest<UserList>
 {
     public int Page;
 
